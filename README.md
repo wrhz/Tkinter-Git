@@ -17,7 +17,7 @@ Installation
 Clone this repository:
 bash
 Copy Code
-git clone https://github.com/wrhz/.git
+git clone [https://github.com/wrhz/.git](https://github.com/wrhz/Tkinter-Git.git)
 Install required dependencies:
 bash
 Copy Code
