@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import ttk
 import json
 import git
+import subprocess
 from threading import Thread
 
 WIDTH: int = 400
@@ -13,9 +14,17 @@ option: str = ""
 with open("src/config.json", "r") as f:
     config: dict = json.load(f)
 
+if config.get("username"):
+    subprocess.run(["git", "config", "--global", "user.name", config.get("username")])
+if config.get("email"):
+    subprocess.run(["git", "config", "--global", "user.email", config.get("email")])
+
 def do_clone(url, save_path):
-    repo = git.Repo.clone_from(url, save_path)
-    print(repo)
+    try:
+        repo = git.Repo.clone_from(url, save_path)
+        print(repo)
+    except Exception as e:
+        error.config(text=str(e), fg="red")
 
 def clone_repo():
     global option, config, tk, win, error
